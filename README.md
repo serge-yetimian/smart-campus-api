@@ -26,7 +26,7 @@ following the links provided in responses. It also makes the API more resilient 
 change, since if endpoint paths are updated, clients following links automatically
 adapt without code changes.
 
----
+
 
 ### Part 2 — Room Management
 
@@ -50,7 +50,7 @@ subsequent calls, the end state of the server remains the same — the room does
 This satisfies the definition of idempotency, which requires that the side effects of
 multiple identical requests are the same as a single request.
 
----
+
 
 ### Part 3 — Sensor Operations
 
@@ -74,7 +74,7 @@ are also more flexible, as multiple filters can be combined easily
 (e.g. ?type=CO2&status=ACTIVE), whereas path-based filters become awkward with multiple
 parameters.
 
----
+
 
 ### Part 4 — Sub-Resources
 
@@ -89,7 +89,7 @@ It also improves readability, as each class is smaller and more focused. In larg
 with many nested resources, this pattern prevents resource classes from growing
 unmanageable in size.
 
----
+
 
 ### Part 5 — Error Handling & Logging
 
