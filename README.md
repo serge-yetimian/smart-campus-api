@@ -10,15 +10,15 @@ The API lets you create rooms, assign sensors to them, record sensor readings, a
 
 
 
- GET  `/api/v1`  Shows API info and links 
- GET  `/api/v1/rooms`  Lists all rooms 
- POST  `/api/v1/rooms`  Creates a new room 
- GET  `/api/v1/rooms/{id}`  Gets one room by ID 
- DELETE  `/api/v1/rooms/{id}`  Deletes a room (only if no sensors are in it) 
- GET | `/api/v1/sensors`  Lists all sensors (can filter by type) 
- POST  `/api/v1/sensors`  Registers a new sensor 
- GET  `/api/v1/sensors/{id}/readings`  Gets all readings for a sensor 
- POST  `/api/v1/sensors/{id}/readings`  Adds a new reading for a sensor 
+ GET  `/api/v1`  Shows API info and links |
+ GET  `/api/v1/rooms`  Lists all rooms |
+ POST  `/api/v1/rooms`  Creates a new room |
+ GET  `/api/v1/rooms/{id}`  Gets one room by ID |
+ DELETE  `/api/v1/rooms/{id}`  Deletes a room (only if no sensors are in it) |
+ GET | `/api/v1/sensors`  Lists all sensors (can filter by type) |
+ POST  `/api/v1/sensors`  Registers a new sensor |
+ GET  `/api/v1/sensors/{id}/readings`  Gets all readings for a sensor |
+ POST  `/api/v1/sensors/{id}/readings`  Adds a new reading for a sensor |
 
 
 
