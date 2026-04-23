@@ -1,3 +1,118 @@
+# Smart Campus Sensor & Room Management API
+
+## What is this?
+
+This is a REST API built for managing rooms and sensors across a university campus. It's written in Java using JAX-RS (Jersey) with a built-in web server called Grizzly, so there's no need to install Tomcat or anything like that  you just run the JAR file and it starts up.
+
+The API lets you create rooms, assign sensors to them, record sensor readings, and handles errors properly so nothing crashes unexpectedly.
+
+### Endpoints at a glance
+
+
+
+ GET  `/api/v1`  Shows API info and links 
+ GET  `/api/v1/rooms`  Lists all rooms 
+ POST  `/api/v1/rooms`  Creates a new room 
+ GET  `/api/v1/rooms/{id}`  Gets one room by ID 
+ DELETE  `/api/v1/rooms/{id}`  Deletes a room (only if no sensors are in it) 
+ GET | `/api/v1/sensors`  Lists all sensors (can filter by type) 
+ POST  `/api/v1/sensors`  Registers a new sensor 
+ GET  `/api/v1/sensors/{id}/readings`  Gets all readings for a sensor 
+ POST  `/api/v1/sensors/{id}/readings`  Adds a new reading for a sensor 
+
+
+
+## What you need before running this
+
+- **Java 11 or newer**  check by running `java -version` in your terminal
+- **Maven**  check by running `mvn -version`
+
+If either of those isn't installed, grab them here:
+- Java: https://adoptium.net
+- Maven: https://maven.apache.org/download.cgi
+
+
+
+## How to run it
+
+**Step 1  Clone the repo**
+```bash
+git clone https://github.com/serge-yetimian/smart-campus-api.git
+cd smart-campus-api
+```
+
+**Step 2  Build it**
+```bash
+mvn clean package
+```
+Wait for it to say `BUILD SUCCESS`. This creates a single JAR file with everything bundled in.
+
+**Step 3  Start the server**
+```bash
+java -jar target/smart-campus-api-1.0-SNAPSHOT.jar
+```
+The server will start at `http://localhost:8080`. That's it  no extra setup needed.
+
+**Step 4  Test it's working**
+```bash
+curl http://localhost:8080/api/v1
+```
+You should get back a JSON response with links to the available resources.
+
+
+
+## Example curl Commands
+
+Here are some example requests you can run to interact with the API.
+
+### 1. Check the API is running
+```bash
+curl http://localhost:8080/api/v1
+```
+
+### 2. Create a room
+```bash
+curl -X POST http://localhost:8080/api/v1/rooms \
+  -H "Content-Type: application/json" \
+  -d '{"id": "LIB-301", "name": "Library Quiet Study", "capacity": 50}'
+```
+
+### 3. Add a sensor to that room
+```bash
+curl -X POST http://localhost:8080/api/v1/sensors \
+  -H "Content-Type: application/json" \
+  -d '{"id": "CO2-001", "type": "CO2", "status": "ACTIVE", "currentValue": 412.5, "roomId": "LIB-301"}'
+```
+
+### 4. Get only CO2 sensors (filtered)
+```bash
+curl "http://localhost:8080/api/v1/sensors?type=CO2"
+```
+
+### 5. Post a reading for a sensor
+```bash
+curl -X POST http://localhost:8080/api/v1/sensors/CO2-001/readings \
+  -H "Content-Type: application/json" \
+  -d '{"value": 450.0}'
+```
+
+### 6. Try to delete a room that still has sensors (expect a 409 error)
+```bash
+curl -X DELETE http://localhost:8080/api/v1/rooms/LIB-301
+```
+
+### 7. Get the reading history for a sensor
+```bash
+curl http://localhost:8080/api/v1/sensors/CO2-001/readings
+```
+
+
+
+
+
+
+
+
 ## Report: Answers to Questions
 
 ### Part 1 Setup and Discovery
